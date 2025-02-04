@@ -29,6 +29,7 @@ public class LineSelector : MonoBehaviour
     void Update()
     {
 
+        //--------------------- I change the material to highlight the selected line for the user --------------------------//
         if (gameManager.SelectedPath != null)
         {
 

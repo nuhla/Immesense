@@ -24,16 +24,12 @@ public class GameManager : MonoBehaviour
     private float mindistanceX = 0.1f;
     private float mindistanceZ = 0.1f;
 
-  
 
     private int index;
     private LineRenderer CurrentLine;
-    public  LineRenderer SelectedPath;
+    public LineRenderer SelectedPath;
 
 
-
-
-    // Start is called before the first frame update
     void Start()
     {
         previousePosition = lineRenderer.transform.position;
@@ -46,65 +42,73 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
 
-            if (Input.GetMouseButtonDown(0))
+        /// ---------------------- Cast Ray and see what it hits ----------------------//
+        if (Input.GetMouseButtonDown(0))
+        {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+            if (Physics.Raycast(ray, out RaycastHit hit))
             {
-                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                if (Physics.Raycast(ray, out RaycastHit hit))
+                // --------------------- if it hits the terrain we will---------------//
+                //-----------------------instantiate a new Line Instance -------------//
+                //---------------------- and start drawing the line on the terian ----// 
+                if (hit.collider.gameObject == terrain.gameObject)
                 {
-                    if (hit.collider.gameObject == terrain.gameObject)
-                    {
-                        isDrwaing = true;
-                        points = new List<Vector3>();
-                        CurrentLine = GameObject.Instantiate<LineRenderer>(lineRenderer);
-                        index++;
-                        CurrentLine.gameObject.transform.name = "Line" + index;
-                    }
+                    isDrwaing = true;
+                    points = new List<Vector3>();
+
+                    //----------------- istantiate the line (it should be a prefab but its okay now to keep it in the sceen )
+                    CurrentLine = GameObject.Instantiate<LineRenderer>(lineRenderer);
+                    //- ------ index here just for line naming 
+                    index++;
+                    CurrentLine.gameObject.transform.name = "Line" + index;
                 }
-                /// ---------------- Start Selection Mode to Move the Balls -----------------//
-               
-
-
-            }
-            else if (Input.GetMouseButtonUp(0))
-            {
-                isDrwaing = false;
-
             }
 
-            if (Input.GetMouseButton(0) && isDrwaing)
+
+        }
+        else if (Input.GetMouseButtonUp(0))
+        {
+            //---------------- when use un-press mouse drawing the line is done ------------------//
+            isDrwaing = false;
+
+        }
+
+        if (Input.GetMouseButton(0) && isDrwaing)
+        {
+
+            //------------- the mouse is still pressed and drawing is working-----------------------//
+            //------------ takes the hit point and saves it in the line renderer -------------------//
+
+            Vector3 currentPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+            if (Physics.Raycast(ray, out RaycastHit hit))
             {
-                
-
-                Vector3 currentPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-                if (Physics.Raycast(ray, out RaycastHit hit))
+                if (hit.collider.gameObject == terrain.gameObject)
                 {
-                    if (hit.collider.gameObject == terrain.gameObject)
-                    {
 
-                        DrawLineAndUpdateTerrian(CurrentLine, currentPosition, hit);
-                    }
-                    if (hit.collider.gameObject.name == "SelectItem")
-                    {
-                        //isDrwaing = false;
-                        SelectedPath = hit.collider.gameObject.transform.parent.GetComponent<LineRenderer>();
-                        SelectedPath.material = selectedMaterial;
-                      
-                    }
+                    DrawLineAndUpdateTerrian(CurrentLine, currentPosition, hit);
+                }
+                if (hit.collider.gameObject.name == "SelectItem")
+                {
+                    //isDrwaing = false;
+                    SelectedPath = hit.collider.gameObject.transform.parent.GetComponent<LineRenderer>();
+                    SelectedPath.material = selectedMaterial;
 
                 }
 
             }
-     
+
+        }
+
 
     }
 
     void DrawLineAndUpdateTerrian(LineRenderer CurrentLine, Vector3 currentPosition, RaycastHit hit)
     {
-        
+
         Transform startPoint = CurrentLine.transform.GetChild(0);
 
         float terrainHeight = terrain.SampleHeight(hit.point);
@@ -126,7 +130,7 @@ public class GameManager : MonoBehaviour
 
 
         Vector3 offset = new Vector3(curreentpoint.x + mindistanceX, curreentpoint.y, curreentpoint.z + mindistanceZ);
-       
+
 
     }
 
