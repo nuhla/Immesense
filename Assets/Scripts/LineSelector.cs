@@ -4,7 +4,7 @@ using UnityEditor.UI;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
-public class CustomScript : MonoBehaviour
+public class LineSelector : MonoBehaviour
 {
     [SerializeField]
     Material customMaterial;
@@ -31,7 +31,7 @@ public class CustomScript : MonoBehaviour
 
         if (gameManager.SelectedPath != null)
         {
-            
+
             if (parent.name == gameManager.SelectedPath.transform.gameObject.name) selected = true;
             else selected = false;
 
@@ -43,7 +43,7 @@ public class CustomScript : MonoBehaviour
     {
 
         selected = true;
-        gameManager.SelectedPath= parent.GetComponent<LineRenderer>();
+        gameManager.SelectedPath = parent.GetComponent<LineRenderer>();
 
 
     }

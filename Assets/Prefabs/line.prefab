@@ -1,36 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &2146108698585973699
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 609678284681948021}
-  m_Layer: 0
-  m_Name: movingObjects
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &609678284681948021
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2146108698585973699}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 6203061639036358175}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7558507601927181317
 GameObject:
   m_ObjectHideFlags: 0
@@ -150,6 +119,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   customMaterial: {fileID: 2100000, guid: e2448c2d2c538fa4ebd549c5bf3833eb, type: 2}
+  notSelecte: {fileID: 2100000, guid: cb9f1b0493362644b9a55d7ad6a380bd, type: 2}
 --- !u!1 &9064218872248002105
 GameObject:
   m_ObjectHideFlags: 0
@@ -160,7 +130,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6203061639036358175}
   - component: {fileID: 2586999702046998254}
-  - component: {fileID: 4142974306180366760}
   - component: {fileID: 249346124880375932}
   m_Layer: 0
   m_Name: line
@@ -183,7 +152,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 642448109080189503}
-  - {fileID: 609678284681948021}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!120 &2586999702046998254
@@ -290,18 +258,6 @@ LineRenderer:
   m_UseWorldSpace: 1
   m_Loop: 0
   m_ApplyActiveColorSpace: 1
---- !u!114 &4142974306180366760
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9064218872248002105}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c24f876b30fcf14489edebc42dfea4a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &249346124880375932
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -62,7 +62,7 @@ public class GameManager : MonoBehaviour
                         CurrentLine.gameObject.transform.name = "Line" + index;
                     }
                 }
-                /// ---------------- Start Selection Mode to Move the Sphers -----------------//
+                /// ---------------- Start Selection Mode to Move the Balls -----------------//
                
 
 
@@ -75,7 +75,7 @@ public class GameManager : MonoBehaviour
 
             if (Input.GetMouseButton(0) && isDrwaing)
             {
-                //StartDraw = true; moving = true;
+                
 
                 Vector3 currentPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
